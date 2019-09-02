@@ -7,7 +7,7 @@ Write your solution in `src/index.js`
 
 ---
 
-**Input:** String, that contain `(`, `)`, `+`, `-`, `*`, `/` and `space`. Brackets can have **any nasting depth** 
+**Input:** String, that contain `(`, `)`, `+`, `-`, `*`, `/` and `space`. Brackets can have **any nasting depth**   
 **Output:** Value of expression (Number)
 
 ---
