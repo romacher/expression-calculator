@@ -1,14 +1,16 @@
-# expression-calculator
-Let's warm up!
+# Expression calculator
 
 ## Task
 
 Your task is to implement function, which calculate result for any math expressions.
 Write your solution in `src/index.js`
 
-| Input | String, that contain `(`, `)`, `+`, `-`, `*`, `/` and `space`. Brackets can have **_any nasting depth_**.  |
-| ------ | ------ |
-| Output | Value of expression (type Number) |
+---
+
+**Input:** String, that contain `(`, `)`, `+`, `-`, `*`, `/` and `space`. Brackets can have **any nasting depth**   
+**Output:** Value of expression (Number)
+
+---
 
 ## Prepare and test
 
