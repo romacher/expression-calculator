@@ -1,0 +1,23 @@
+{
+  "name": "expression-calculator",
+  "version": "1.0.0",
+  "description": "Calculator for expressions with nested brackets",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romacher/expression-calculator.git"
+  },
+  "author": "Roman Chernyavski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romacher/expression-calculator/issues"
+  },
+  "homepage": "https://github.com/romacher/expression-calculator#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  }
+}
