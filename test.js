@@ -425,8 +425,7 @@ describe("Hard", function() {
     
     it("Nested brackets test 28", function() {
         const expr = " 31 * 21 + 14 / (  (  18 * 52 / (  43 - 74 / 89 - 12  ) + 8  ) + 3 / 0 + (  9 + 81 + 19 * 94 / (  0 * 71 + 53 - 20 * 94  )  )  ) ";
-        const result = 651.0000;
-        expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+        expect(() => expressionCalculator(expr)).to.throw("TypeError: Devision by zero.");
     });
     
     it("Nested brackets test 29", function() {
