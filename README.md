@@ -2,10 +2,12 @@
 
 ## Task
 
-Your task is to implement function, which calculate result for any math expressions.
+Your task is to implement function, which calculates the result for any math expressions.
 Write your solution in `src/index.js`
 
 ---
+
+**Do not use `Function constructor` and `eval`**   
 
 **Input:** String, that contain `(`, `)`, `+`, `-`, `*`, `/` and `space`. Brackets can have **any nasting depth**   
 **Output:** Value of expression (Number)
