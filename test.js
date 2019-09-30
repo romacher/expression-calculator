@@ -28,7 +28,7 @@ describe("Easy", function() {
 
     it("Test division by zero", function() {
         const expr = "1 / 0";
-        expect(() => expressionCalculator(expr)).to.throw("TypeError: Devision by zero.");
+        expect(() => expressionCalculator(expr)).to.throw("TypeError: Division by zero.");
     });
 
     
@@ -425,7 +425,7 @@ describe("Hard", function() {
     
     it("Nested brackets test 28", function() {
         const expr = " 31 * 21 + 14 / (  (  18 * 52 / (  43 - 74 / 89 - 12  ) + 8  ) + 3 / 0 + (  9 + 81 + 19 * 94 / (  0 * 71 + 53 - 20 * 94  )  )  ) ";
-        expect(() => expressionCalculator(expr)).to.throw("TypeError: Devision by zero.");
+        expect(() => expressionCalculator(expr)).to.throw("TypeError: Division by zero.");
     });
     
     it("Nested brackets test 29", function() {
