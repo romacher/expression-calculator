@@ -4,9 +4,15 @@ function eval() {
 }
 
 function expressionCalculator(expr) {
-    // write your solution here
+    let arr = expr.split(RegExp(/\+||\-||\*||\\/));
+    for ( let i = 1; i<arr.length - 1; i++ ) {
+        case arr[i] : 
+            
+    }
 }
 
 module.exports = {
     expressionCalculator
 }
+
+
