@@ -58,13 +58,6 @@ function expressionCalculator(expr) {
                     }
                 }
             }
-            /* stack.length === 0 ? stack.push(el)
-                 : (priority[stack[stack.length - 1]] === 1)
-                 ? stack.reverse()[stack.length - 1]
-                 forEach(el => el !== '(' // если последний элемент в стэке
-                     ? outLine.push(stack.reverse().pop()) : stack.reverse().slice(0, -1))
-                 : (priority[stack[stack.length - 1]] >= priority[el]) ? stack.reverse().forEach(el => priority[el] >= priority[this.el]
-                     ? outLine.push(stack.reverse().pop()) : stack.push(el)):stack.reverse();*/
         } else {
             outLine.push(el);
         }
@@ -74,20 +67,16 @@ function expressionCalculator(expr) {
             outLine.push(stack.pop());
         }
 
-
-    outLine.map((el, i) => {
-            if (el in operators) {
+    for (let i = 0; outLine.length>=i; i++ )
+            if (outLine[i] in operators) {
                 let [a, b] = [
                     Number(outLine.splice(i - 2, 1)),
                     Number(outLine.splice(i - 2, 1))];
-                outLine[i-2] = operators[el](a, b);
-                i = i + 2;
+                outLine[i-2] = operators[outLine[i-2]](a, b);
+                i = i-2;
             }
-        }
-    );
 
-    return console.log(outLine.pop());
-
+    return !outLine[0].isNaN ? outLine.pop() : null;
 }
 
 module.exports = {
