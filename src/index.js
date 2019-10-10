@@ -11,6 +11,7 @@ function expressionCalculator(expr) {
         .replace("/", " / ")
         .replace("(", " ( ")
         .replace(")", " ) ");
+
     const operators = {
         '+': (a, b) => a + b,
         '-': (a, b) => a - b,
@@ -30,11 +31,8 @@ function expressionCalculator(expr) {
     let stack = [];
     const reg = /\s+/g;
 
-    console.log(expr.trim().split(reg));
     expr.trim().split(reg).forEach((el) => {
-        // console.log(el);
         if (el in priority) {
-            // console.log('+++ ' + el);
             if (stack.length === 0)
                 stack.push(el);
             else if (el === ')') {
@@ -47,9 +45,13 @@ function expressionCalculator(expr) {
                     }
                 }
             } else {
-                for (let i = stack.length - 1; i >= 0; i--) {
-                    if (priority[stack[stack.length - 1]] >= priority[el]) {
-                        outLine.push(stack.pop());
+                for (let i = stack.length; i >= 0; i--) {
+                    if (stack.length !== 0 && (priority[stack[stack.length - 1]] >= priority[el])) {
+                        if (el === '(') {
+                            stack.push(el);
+                            break;
+                        } else
+                            stack.length === 0 ? stack.push(el) : outLine.push(stack.pop());
                     } else {
                         stack.push(el);
                         break;
@@ -68,10 +70,21 @@ function expressionCalculator(expr) {
         }
     });
     if (stack.length !== 0)
-        outLine.push(stack.pop());
+        for (let i = stack.length - 1; i >= 0; i--) {
+            outLine.push(stack.pop());
+        }
 
-    console.log(stack);
-    console.log(outLine);
+
+    outLine.map((el, i) => {
+            if (el in operators) {
+                let [a, b] = [
+                    Number(outLine.splice(i - 2, 1)),
+                    Number(outLine.splice(i - 2, 1))];
+                outLine[i-2] = operators[el](a, b);
+                i = i + 2;
+            }
+        }
+    );
 
     return console.log(outLine.pop());
 
