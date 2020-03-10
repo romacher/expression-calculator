@@ -321,7 +321,7 @@ describe("Hard", function() {
         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
     });
     
-    it("Nested brackets test 11", function() {
+    it.only("Nested brackets test 11", function() {
         const expr = " 11 - 92 + 48 / (  (  12 / 92 + (  53 / 74 / 22 + (  61 / 24 / 42 - (  13 * 85 + 100 / 77 / 11  ) + 89  ) + 9  ) + 87  ) / 91 * 92  ) ";
         const result = -81.0516;
         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
