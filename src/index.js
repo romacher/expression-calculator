@@ -8,9 +8,10 @@ function expressionCalculator(expr) {
   let result = expr
 
   result = result.replace(/\s+/gm, () => '')
+  console.error('after space replace', result)
 
-  console.error('after space replace', expr)
-  
+
+
   if (!isNaN(+result)) {
     console.error('number check pass', +result)
     return +result
@@ -18,13 +19,28 @@ function expressionCalculator(expr) {
   
   
   if (/\(|\)/gm.test(result)) {
+    const openBracketMatch = result.match(/\(/gm)
+    const closeBracketMatch = result.match(/\)/gm)
+
+    console.error('before brackets check', openBracketMatch, closeBracketMatch)
+
+    if (openBracketMatch === null || closeBracketMatch === null || openBracketMatch.length !== closeBracketMatch.length) throw "ExpressionError: Brackets must be paired"
+
     while (/\(|\)/gm.test(result)) {
-      result = result.replace(/\([^\(\)]+\)/gm, match => expressionCalculator(match.slice(1, match.length - 1)))
+      result = result.replace(/\([^\(|^\)]+\)/gm, match => {
+        console.error(`before brackets matching. match: ${match}, expression in brackets: ${match.slice(1, match.length - 1)}`)
+
+        return expressionCalculator(match.slice(1, match.length - 1))
+      })
     }
 
-    console.error('after ( ) replace', expr)
+    console.error('after ( ) replace', result)
 
-    return result
+    const outerResult = expressionCalculator(result)
+
+    console.error('after ( ) replace outerResult: ', outerResult)
+
+    return outerResult
   }
   
   result = result.replace(/\+\-/gm, () => '-')
@@ -49,8 +65,13 @@ function expressionCalculator(expr) {
   
 
   if (/\-/gm.test(result)) {
-    console.error('before subtraction', result)
+    
+    console.error('before start minus replace', result)
+    result = result.replace(/^\-/gm, () => 'SM')
+    console.error('after start minus replace', result)
 
+
+    console.error('before subtraction', result)
     result = result.match(/[^\-]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => acc - fragment)
@@ -108,6 +129,10 @@ function expressionCalculator(expr) {
     console.error('after negative division', result)
     return result
   }
+
+  console.error('before start minus replace back', result)
+  return result.replace(/^SM/gm, () => '-')
+  console.error('after start minus replace back', result)
 
   console.error('untreated...', result)
 }
