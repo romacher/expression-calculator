@@ -123,142 +123,142 @@ describe("Easy", function() {
     });
 });
 
-// describe("Medium", function() {
-//     it("Brackets must be paired", function() {
-//         const expr = "1 + 2) * 3";
-//         expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
-//     });
+describe("Medium", function() {
+    // it("Brackets must be paired", function() {
+    //     const expr = "1 + 2) * 3";
+    //     expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
+    // });
 
-//     it("Brackets must be paired", function() {
-//         const expr = "((1 + 2) * 3";
-//         expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
-//     });
+    // it("Brackets must be paired", function() {
+    //     const expr = "((1 + 2) * 3";
+    //     expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
+    // });
 
-//     it("Brackets must be paired", function() {
-//         const expr = "((1 + 2 * 3";
-//         expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
-//     });
+    // it("Brackets must be paired", function() {
+    //     const expr = "((1 + 2 * 3";
+    //     expect(() => expressionCalculator(expr)).to.throw("ExpressionError: Brackets must be paired");
+    // });
 
-//     it("Brackets test 1", function() {
-//         const expr = " 20 - 57 * 12 - (  58 + 84 * 32 / 27  ) ";
-//         const result = -821.5556;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 1", function() {
+    //     const expr = " 20 - 57 * 12 - (  58 + 84 * 32 / 27  ) ";
+    //     const result = -821.5556;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 2", function() {
-//         const expr = " 77 + 79 / 25 * (  64 * 63 - 89 * 14  ) * 49 ";
-//         const result = 431461.2400;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 2", function() {
+    //     const expr = " 77 + 79 / 25 * (  64 * 63 - 89 * 14  ) * 49 ";
+    //     const result = 431461.2400;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 3", function() {
-//         const expr = " 100 - 60 / 38 + (  19 / 88 * 97 / 82 / 94  ) * 92 ";
-//         const result = 98.6710;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 3", function() {
+    //     const expr = " 100 - 60 / 38 + (  19 / 88 * 97 / 82 / 94  ) * 92 ";
+    //     const result = 98.6710;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 4", function() {
-//         const expr = " (  97 / 48 + 86 + 56 * 94  ) / 43 + 57 ";
-//         const result = 181.4656;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 4", function() {
+    //     const expr = " (  97 / 48 + 86 + 56 * 94  ) / 43 + 57 ";
+    //     const result = 181.4656;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 5", function() {
-//         const expr = " (  68 - 85 / 75 * 64  ) / 15 + 73 ";
-//         const result = 72.6978;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 5", function() {
+    //     const expr = " (  68 - 85 / 75 * 64  ) / 15 + 73 ";
+    //     const result = 72.6978;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 6", function() {
-//         const expr = " 91 + 18 / (  42 + 62 + 84 * 95  ) + 30 ";
-//         const result = 121.0022;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 6", function() {
+    //     const expr = " 91 + 18 / (  42 + 62 + 84 * 95  ) + 30 ";
+    //     const result = 121.0022;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 7", function() {
-//         const expr = " 49 * 31 * (  20 - 83 / 63 / 46 * 29  ) / 68 ";
-//         const result = 428.2112;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 7", function() {
+    //     const expr = " 49 * 31 * (  20 - 83 / 63 / 46 * 29  ) / 68 ";
+    //     const result = 428.2112;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 8", function() {
-//         const expr = " 35 - 45 / 37 + 84 + (  41 + 86 / 18 / 41 * 73  ) ";
-//         const result = 167.2906;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 8", function() {
+    //     const expr = " 35 - 45 / 37 + 84 + (  41 + 86 / 18 / 41 * 73  ) ";
+    //     const result = 167.2906;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 9", function() {
-//         const expr = " 44 * 13 / (  26 + 24 * 70 + 89 * 7  ) + 81 ";
-//         const result = 81.2456;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 9", function() {
+    //     const expr = " 44 * 13 / (  26 + 24 * 70 + 89 * 7  ) + 81 ";
+    //     const result = 81.2456;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 10", function() {
-//         const expr = " 53 - 88 + 7 + (  34 / 54 + 15 / 23 / 6  ) * 73 ";
-//         const result = 25.8977;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 10", function() {
+    //     const expr = " 53 - 88 + 7 + (  34 / 54 + 15 / 23 / 6  ) * 73 ";
+    //     const result = 25.8977;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 11", function() {
-//         const expr = " 57 - 71 + (  14 + 3 - 24 * 100 / 23  ) / 53 ";
-//         const result = -15.6481;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 11", function() {
+    //     const expr = " 57 - 71 + (  14 + 3 - 24 * 100 / 23  ) / 53 ";
+    //     const result = -15.6481;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 12", function() {
-//         const expr = " (  41 * 76 * 79 - 61  ) / 60 + 83 ";
-//         const result = 4184.7167;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 12", function() {
+    //     const expr = " (  41 * 76 * 79 - 61  ) / 60 + 83 ";
+    //     const result = 4184.7167;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 13", function() {
-//         const expr = " (  73 + 85 + 64 / 17  ) * 17 + 31 / 60 ";
-//         const result = 2750.5167;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 13", function() {
+    //     const expr = " (  73 + 85 + 64 / 17  ) * 17 + 31 / 60 ";
+    //     const result = 2750.5167;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 14", function() {
-//         const expr = " 74 * 96 + 62 / (  25 / 33 + 96 + 87 + 78  ) ";
-//         const result = 7104.2369;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 14", function() {
+    //     const expr = " 74 * 96 + 62 / (  25 / 33 + 96 + 87 + 78  ) ";
+    //     const result = 7104.2369;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 15", function() {
-//         const expr = " 33 - 96 + (  95 - 76 * 98 / 11  ) * 15 ";
-//         const result = -8794.3636;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 15", function() {
+    //     const expr = " 33 - 96 + (  95 - 76 * 98 / 11  ) * 15 ";
+    //     const result = -8794.3636;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 16", function() {
-//         const expr = " 72 / 75 + 4 * (  14 * 2 / 57 * 21  ) / 15 ";
-//         const result = 3.7109;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 16", function() {
+    //     const expr = " 72 / 75 + 4 * (  14 * 2 / 57 * 21  ) / 15 ";
+    //     const result = 3.7109;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 17", function() {
-//         const expr = " 72 * 95 + 53 + (  2 + 76 - 52 / 1 - 47  ) ";
-//         const result = 6872.0000;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 17", function() {
+    //     const expr = " 72 * 95 + 53 + (  2 + 76 - 52 / 1 - 47  ) ";
+    //     const result = 6872.0000;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 18", function() {
-//         const expr = " 85 * 97 / (  89 / 11 - 18 * 96  ) - 61 ";
-//         const result = -65.7939;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 18", function() {
+    //     const expr = " 85 * 97 / (  89 / 11 - 18 * 96  ) - 61 ";
+    //     const result = -65.7939;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 19", function() {
-//         const expr = " 29 + 24 / 91 - (  14 * 71 * 18 / 20 * 100  ) + 63 ";
-//         const result = -89367.7363;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
+    // it("Brackets test 19", function() {
+    //     const expr = " 29 + 24 / 91 - (  14 * 71 * 18 / 20 * 100  ) + 63 ";
+    //     const result = -89367.7363;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
     
-//     it("Brackets test 20", function() {
-//         const expr = " 52 * 62 * (  61 + 12 - 14 * 79  ) + 39 ";
-//         const result = -3330353.0000;
-//         expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
-//     });
-// });
+    // it("Brackets test 20", function() {
+    //     const expr = " 52 * 62 * (  61 + 12 - 14 * 79  ) + 39 ";
+    //     const result = -3330353.0000;
+    //     expect(Number(expressionCalculator(expr).toFixed(4))).to.equal(result);
+    // });
+});
 
 // describe("Hard", function() {
 //     it("Nested brackets test 1", function() {

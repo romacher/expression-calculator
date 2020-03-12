@@ -12,7 +12,7 @@ function expressionCalculator(expr) {
   console.error('after space replace', expr)
   
   if (!isNaN(+result)) {
-    console.error('number check pass', expr)
+    console.error('number check pass', +result)
     return +result
   }
   
@@ -36,18 +36,24 @@ function expressionCalculator(expr) {
 
 
   if (/\+/gm.test(result)) {
-    result = result.match(/[^\+]+/gm)
-      .reduce((acc, fragment) => acc + expressionCalculator(fragment), 0)
+    console.error('before addition', result)
 
-      console.error('after addition', result)
+    result = result.match(/[^\+]+/gm)
+      .map(fragment => expressionCalculator(fragment))
+      .reduce((acc, fragment) => acc + fragment)
+
+    console.error('after addition', result)
     return result
   }
 
   
 
   if (/\-/gm.test(result)) {
+    console.error('before subtraction', result)
+
     result = result.match(/[^\-]+/gm)
-      .reduce((acc, fragment) => acc - expressionCalculator(fragment))
+      .map(fragment => expressionCalculator(fragment))
+      .reduce((acc, fragment) => acc - fragment)
 
     console.error('after subtraction', result)
     return result
@@ -56,24 +62,33 @@ function expressionCalculator(expr) {
   
 
   if (/\*/gm.test(result)) {
+    console.error('before positive multiplication', result)
+
     result = result.match(/[^\*]+/gm)
-      .reduce((acc, fragment) => acc * expressionCalculator(fragment), 1)
+      .map(fragment => expressionCalculator(fragment))
+      .reduce((acc, fragment) => acc * fragment)
 
     console.error('after positive multiplication', result)
     return result
   }
 
   if (/NM/gm.test(result)) {
+    console.error('before negative multiplication', result)
+
     result = result.match(/[^NM]+/gm)
-      .reduce((acc, fragment) => - (acc * expressionCalculator(fragment)), 1)
+      .map(fragment => expressionCalculator(fragment))
+      .reduce((acc, fragment) => - (acc * fragment))
 
     console.error('after negative multiplication', result)
     return result
   }
 
   if (/\//gm.test(result)) {
+    console.error('before positive division', result)
+
     result = result.match(/[^\/]+/gm)
-      .reduce((acc, fragment) => acc / expressionCalculator(fragment))
+      .map(fragment => expressionCalculator(fragment))
+      .reduce((acc, fragment) => acc / fragment)
       
     if (result === Infinity) throw "TypeError: Division by zero."
 
@@ -82,9 +97,14 @@ function expressionCalculator(expr) {
   }
 
   if (/ND/gm.test(result)) {
+    console.error('before negative division', result)
+
     result = result.match(/[^ND]+/gm)
-      .reduce((acc, fragment) => - (acc / expressionCalculator(fragment)))
+      .map(fragment => expressionCalculator(fragment))
+      .reduce((acc, fragment) => - (acc / fragment))
     
+    if (result === Infinity) throw "TypeError: Division by zero."
+
     console.error('after negative division', result)
     return result
   }
