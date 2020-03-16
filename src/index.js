@@ -26,8 +26,8 @@ function expressionCalculator(expr) {
 
     if (openBracketMatch === null || closeBracketMatch === null || openBracketMatch.length !== closeBracketMatch.length) throw "ExpressionError: Brackets must be paired"
 
-    while (/\(|\)/gm.test(result)) {
-      result = result.replace(/\([^\(|^\)]+\)/gm, match => {
+    while (/^(?=.*\()(?=.*\)).*$/gm.test(result)) {
+      result = result.replace(/\([^\(|^\)]*\)/gm, match => {
         console.error(`before brackets matching. match: ${match}, expression in brackets: ${match.slice(1, match.length - 1)}`)
 
         return expressionCalculator(match.slice(1, match.length - 1))
