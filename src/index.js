@@ -22,7 +22,7 @@ function expressionCalculator(expr) {
     const openBracketMatch = result.match(/\(/gm)
     const closeBracketMatch = result.match(/\)/gm)
 
-    console.error('before brackets check', openBracketMatch, closeBracketMatch)
+    // console.error('before brackets check', openBracketMatch, closeBracketMatch)
 
     if (openBracketMatch === null || closeBracketMatch === null || openBracketMatch.length !== closeBracketMatch.length) throw "ExpressionError: Brackets must be paired"
 
@@ -44,6 +44,7 @@ function expressionCalculator(expr) {
   }
   
   result = result.replace(/\+\-/gm, () => '-')
+  result = result.replace(/SMSM/gm, () => '')
   result = result.replace(/\-\-/gm, () => '+')
   result = result.replace(/\*\-/gm, () => 'NM')
   result = result.replace(/\/\-/gm, () => 'ND')
@@ -52,7 +53,7 @@ function expressionCalculator(expr) {
 
 
   if (/\+/gm.test(result)) {
-    console.error('before addition', result)
+    // console.error('before addition', result)
 
     result = result.match(/[^\+]+/gm)
       .map(fragment => expressionCalculator(fragment))
@@ -66,12 +67,12 @@ function expressionCalculator(expr) {
 
   if (/\-/gm.test(result)) {
     
-    console.error('before start minus replace', result)
+    // console.error('before start minus replace', result)
     result = result.replace(/^\-/gm, () => 'SM')
     console.error('after start minus replace', result)
 
 
-    console.error('before subtraction', result)
+    // console.error('before subtraction', result)
     result = result.match(/[^\-]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => acc - fragment)
@@ -83,7 +84,7 @@ function expressionCalculator(expr) {
   
 
   if (/\*/gm.test(result)) {
-    console.error('before positive multiplication', result)
+    // console.error('before positive multiplication', result)
 
     result = result.match(/[^\*]+/gm)
       .map(fragment => expressionCalculator(fragment))
@@ -94,7 +95,7 @@ function expressionCalculator(expr) {
   }
 
   if (/NM/gm.test(result)) {
-    console.error('before negative multiplication', result)
+    // console.error('before negative multiplication', result)
 
     result = result.match(/[^NM]+/gm)
       .map(fragment => expressionCalculator(fragment))
@@ -104,8 +105,20 @@ function expressionCalculator(expr) {
     return result
   }
 
+
+
+
+  if (/ND/gm.test(result)) {
+    // console.error('before ND replace back', result)
+    const NDMatch = result.match(/ND/gm)
+    result = result.replace(/ND/gm, () => '/')
+    result = NDMatch.length % 2 === 0 ? result : `SM${result}`
+    console.error('after ND replace back', result)
+  }
+
+    
   if (/\//gm.test(result)) {
-    console.error('before positive division', result)
+    // console.error('before positive division', result)
 
     result = result.match(/[^\/]+/gm)
       .map(fragment => expressionCalculator(fragment))
@@ -117,21 +130,21 @@ function expressionCalculator(expr) {
     return result
   }
 
-  if (/ND/gm.test(result)) {
-    console.error('before negative division', result)
+  // if (/ND/gm.test(result)) {
+  //   // console.error('before negative division', result)
 
-    result = result.match(/[^ND]+/gm)
-      .map(fragment => expressionCalculator(fragment))
-      .reduce((acc, fragment) => - (acc / fragment))
+  //   result = result.match(/[^ND]+/gm)
+  //     .map(fragment => expressionCalculator(fragment))
+  //     .reduce((acc, fragment) => - (acc / fragment))
     
-    if (result === Infinity) throw "TypeError: Division by zero."
+  //   if (result === Infinity) throw "TypeError: Division by zero."
 
-    console.error('after negative division', result)
-    return result
-  }
+  //   console.error('after negative division', result)
+  //   return result
+  // }
 
-  console.error('before start minus replace back', result)
-  return result.replace(/^SM/gm, () => '-')
+  // console.error('before start minus replace back', result)
+  return result.replace(/^SM/, () => '-')
   console.error('after start minus replace back', result)
 
   console.error('untreated...', result)
