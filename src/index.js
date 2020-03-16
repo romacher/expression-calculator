@@ -4,150 +4,88 @@ function eval() {
 }
 
 function expressionCalculator(expr) {
-  console.error('on start', expr)
   let result = expr
 
+  /* replace spaces */
   result = result.replace(/\s+/gm, () => '')
-  console.error('after space replace', result)
 
-
-
-  if (!isNaN(+result)) {
-    console.error('number check pass', +result)
-    return +result
-  }
+  /* try to treat expr as a number */
+  if (!isNaN(+result)) return +result  
   
-  
+  /* deal with brackets */
   if (/\(|\)/gm.test(result)) {
     const openBracketMatch = result.match(/\(/gm)
     const closeBracketMatch = result.match(/\)/gm)
 
-    // console.error('before brackets check', openBracketMatch, closeBracketMatch)
-
-    if (openBracketMatch === null || closeBracketMatch === null || openBracketMatch.length !== closeBracketMatch.length) throw "ExpressionError: Brackets must be paired"
+    if (
+      openBracketMatch === null ||
+      closeBracketMatch === null ||
+      openBracketMatch.length !== closeBracketMatch.length
+    ) throw "ExpressionError: Brackets must be paired"
 
     while (/^(?=.*\()(?=.*\)).*$/gm.test(result)) {
-      result = result.replace(/\([^\(|^\)]*\)/gm, match => {
-        console.error(`before brackets matching. match: ${match}, expression in brackets: ${match.slice(1, match.length - 1)}`)
-
-        return expressionCalculator(match.slice(1, match.length - 1))
-      })
+      result = result.replace(/\([^\(|^\)]*\)/gm, match => expressionCalculator(match.slice(1, match.length - 1)))
     }
-
-    console.error('after ( ) replace', result)
-
-    const outerResult = expressionCalculator(result)
-
-    console.error('after ( ) replace outerResult: ', outerResult)
-
-    return outerResult
+    
+    return expressionCalculator(result)
   }
   
+  /* replace complex operators */
   result = result.replace(/\+\-/gm, () => '-')
   result = result.replace(/SMSM/gm, () => '')
   result = result.replace(/\-\-/gm, () => '+')
   result = result.replace(/\*\-/gm, () => 'NM')
   result = result.replace(/\/\-/gm, () => 'ND')
 
-  console.error('after +- -- *- /- replace', result)
-
-
+  /* make addition  */
   if (/\+/gm.test(result)) {
-    // console.error('before addition', result)
-
-    result = result.match(/[^\+]+/gm)
+    return result.match(/[^\+]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => acc + fragment)
-
-    console.error('after addition', result)
-    return result
   }
 
-  
-
+  /* make substraction */
   if (/\-/gm.test(result)) {
-    
-    // console.error('before start minus replace', result)
     result = result.replace(/^\-/gm, () => 'SM')
-    console.error('after start minus replace', result)
 
-
-    // console.error('before subtraction', result)
-    result = result.match(/[^\-]+/gm)
+    return result.match(/[^\-]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => acc - fragment)
-
-    console.error('after subtraction', result)
-    return result
   }
-
   
-
+  /* make positive multiplying */
   if (/\*/gm.test(result)) {
-    // console.error('before positive multiplication', result)
-
-    result = result.match(/[^\*]+/gm)
+    return result.match(/[^\*]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => acc * fragment)
-
-    console.error('after positive multiplication', result)
-    return result
   }
 
+  /* make negative multiplying */
   if (/NM/gm.test(result)) {
-    // console.error('before negative multiplication', result)
-
-    result = result.match(/[^NM]+/gm)
+    return result.match(/[^NM]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => - (acc * fragment))
-
-    console.error('after negative multiplication', result)
-    return result
   }
 
-
-
-
+  /* deal with negative division */
   if (/ND/gm.test(result)) {
-    // console.error('before ND replace back', result)
     const NDMatch = result.match(/ND/gm)
     result = result.replace(/ND/gm, () => '/')
     result = NDMatch.length % 2 === 0 ? result : `SM${result}`
-    console.error('after ND replace back', result)
   }
-
     
+  /* make positive division */
   if (/\//gm.test(result)) {
-    // console.error('before positive division', result)
-
     result = result.match(/[^\/]+/gm)
       .map(fragment => expressionCalculator(fragment))
       .reduce((acc, fragment) => acc / fragment)
       
     if (result === Infinity) throw "TypeError: Division by zero."
-
-    console.error('after positive division', result)
     return result
   }
 
-  // if (/ND/gm.test(result)) {
-  //   // console.error('before negative division', result)
-
-  //   result = result.match(/[^ND]+/gm)
-  //     .map(fragment => expressionCalculator(fragment))
-  //     .reduce((acc, fragment) => - (acc / fragment))
-    
-  //   if (result === Infinity) throw "TypeError: Division by zero."
-
-  //   console.error('after negative division', result)
-  //   return result
-  // }
-
-  // console.error('before start minus replace back', result)
+  /* replace back a start minus and return a result */
   return result.replace(/^SM/, () => '-')
-  console.error('after start minus replace back', result)
-
-  console.error('untreated...', result)
 }
 
 module.exports = {
