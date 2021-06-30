@@ -31,6 +31,10 @@ describe("Easy", function() {
         expect(() => expressionCalculator(expr)).to.throw("TypeError: Division by zero.");
     });
 
+    it("Test division by zero", function() {
+        const expr = "1 / (5-5)";
+        expect(() => expressionCalculator(expr)).to.throw("TypeError: Division by zero.");
+    });
     
     it("Mixed base test 1", function() {
         const expr = " 49 * 63 / 58 * 36 ";
