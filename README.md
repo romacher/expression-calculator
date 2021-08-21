@@ -1,4 +1,4 @@
-# Expression calculator
+# Maths Expression calculator
 
 ## Task
 
