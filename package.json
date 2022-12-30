@@ -22,7 +22,7 @@
   "homepage": "https://github.com/romacher/expression-calculator#readme",
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.0"
+    "mocha": "^10.2.0"
   },
   "dependencies": {
     "colors": "^1.4.0",
